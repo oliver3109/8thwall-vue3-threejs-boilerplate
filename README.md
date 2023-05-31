@@ -1,1 +1,1 @@
-# 8thwall-vue3-threejs
+# 8thwall-vue3-threejs-boilerplate
