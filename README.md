@@ -6,6 +6,8 @@ This scaffolding allows you to easily develop 8th wall AR projects using Vue3, T
 - Vite development environment
 - Full TypeScript support
 - Asset management
+- Perfect combination of 8th wall, Vue3, and Typescript
+- Add type enhancement to XR8
  
 ## Installation & Usage
 You can choose to clone the project or fork repository, or download the zip file directly. It is recommended to clone the repository so that you can receive the latest patches.
@@ -37,7 +39,14 @@ $ pnpm build
 ```
 
 ## Built-in
+- vue
 - vue-router
 - pinia
 - typescript
 - three
+
+## Maintainers
+[@ChihYungChang](https://github.com/ChihYungChang)
+
+## License
+MIT © Chih-Yung Chang
