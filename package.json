@@ -1,7 +1,9 @@
 {
   "name": "8thwall-vue3-threejs-boilerplate",
   "version": "0.0.0",
+  "description": "This scaffolding allows you to easily develop 8th wall AR projects using Vue3, Three. js, and Typescript",
   "private": true,
+  "license": "MIT",
   "author": {
     "name": "Chih-Yung Chang"
   },
