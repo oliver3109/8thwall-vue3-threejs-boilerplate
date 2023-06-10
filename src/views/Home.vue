@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import XR8CameraFeedback from '@/components/XR8CameraFeedback.vue'
-import type { XR8 } from '../../XR8'
+import type { XR8 } from '../interfaces/XR8'
 import { ImageTargetTrackingPipelineModule } from '../XR8PipelineModules/ImageTargetTracking'
 
 const imageTargetTracking = new ImageTargetTrackingPipelineModule(

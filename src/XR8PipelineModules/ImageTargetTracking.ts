@@ -1,5 +1,5 @@
+import type { XRScene } from '@/interfaces/Three'
 import { EventEmitter } from '@/utils/EventEmitter'
-import type { XRScene } from 'XR8'
 import * as THREE from 'three'
 
 export class ImageTargetTrackingPipelineModule extends EventEmitter {

@@ -42,7 +42,7 @@ const onxrloaded = () => {
   }
 
   // Open the camera and start running the camera run loop.
-  XR8.run({ canvas: document.getElementById('camerafeed') })
+  XR8.run({ canvas: document.getElementById('camerafeed') as HTMLCanvasElement })
 }
 
 /**
