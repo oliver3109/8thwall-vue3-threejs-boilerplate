@@ -1,15 +1,32 @@
-# 8thwall-vue3-threejs-boilerplate
+<a href="https://github.com/ChihYungChang/8thwall-vue3-threejs-boilerplate"> 
+  <img alt="8thwallVue3ThreejsBoilerplateLogo" width="100%" src="https://raw.githubusercontent.com//ChihYungChang/8thwall-vue3-threejs-boilerplate/main/public/logo.png" /> 
+</a> 
 
-This scaffolding allows you to easily develop 8th wall AR projects using Vue3, Three. js, and Typescript.
+<br/>
+ 
+<p>
+  8thwall Vue3 Threejs Boilerplate uses <a href="https://www.8thwall.com/">8th Wall</a>, <a href="https://vuejs.org/">Vue3</a>, <a href="https://router.vuejs.org/">Vue Router</a>, <a href="https://threejs.org/">Three.js</a> and <a href="https://vitejs.dev/">Vite</a>.
+</p>
+
+
+_This template allows you to easily develop 8th wall AR projects using Vue3, Three.js, and Typescript._
+
+> **NOTES**
+> - Still constantly improving
 
 ## Features
-- Vite development environment
-- Full TypeScript support
-- Asset management
-- Perfect combination of 8th wall, Vue3, and Typescript
-- Add type enhancement to XR8
- 
+
+- [x] Vite development environment
+- [x] Full TypeScript support
+- [x] Asset management
+- [x] 🛹 [State & Store Management (Pinia)](https://pinia.vuejs.org/)
+- [x] Perfect combination of 8th wall, Vue3, and Typescript
+
+## To Do
+- [ ] Add type enhancement to XR8
+
 ## Installation & Usage
+
 You can choose to clone the project or fork repository, or download the zip file directly. It is recommended to clone the repository so that you can receive the latest patches.
 
 To run a project, you need to have node version 16 or higher and use pnpm as your dependency management tool
@@ -23,6 +40,7 @@ VITE_8THWALL_APP_KEY=xxxxxxxxxxxxxxxxxxx
 ```
 
 ## Build Setup
+
 ```bash
 # Clone this repository
 $ git clone https://github.com/ChihYungChang/8thwall-vue3-threejs-boilerplate.git
@@ -34,11 +52,12 @@ $ pnpm install
 # serve with hot reload at localhost:8080
 $ pnpm dev
 
-# build electron application for production
+# build 8th Wall application for production
 $ pnpm build
 ```
 
 ## Built-in
+
 - vue
 - vue-router
 - pinia
@@ -46,7 +65,9 @@ $ pnpm build
 - three
 
 ## Maintainers
+
 [@ChihYungChang](https://github.com/ChihYungChang)
 
 ## License
+
 MIT © Chih-Yung Chang
