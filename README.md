@@ -27,7 +27,7 @@ _This template allows you to easily develop 8th wall AR projects using Vue3, Thr
 - [ ] Including shader chunks
 - [ ] LYGIA Shader Library
 - [ ] Add type enhancement to XR8
-- [ ] Refactoring XR8 development methods with Class
+- [ ] Using Class to refactor XR8 development methods
 
 ## Installation & Usage
 
