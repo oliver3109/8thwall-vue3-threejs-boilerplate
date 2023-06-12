@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useXR8 } from '@/XR8'
-import { ImageTargetTrackingPipelineModule } from '@/XR8/PipelineModules/ImageTargetTracking'
+import { PipelineEngine } from '@/XR8/PipelineEngine'
+import { Demo } from './Demo'
 
 const emit = defineEmits(['initialized'])
 
 const camerafeed = ref(null)
 
-const imageTargetTrackingPipelineModule = new ImageTargetTrackingPipelineModule(
-  'image-target-tracking'
-)
+const imageTargetTracking = new PipelineEngine('image-target-tracking', Demo)
 
 const { canvasWidth, canvasHeight } = useXR8(
   camerafeed,
@@ -22,7 +21,7 @@ const { canvasWidth, canvasHeight } = useXR8(
       jpgCompression: 100
     }
   },
-  [imageTargetTrackingPipelineModule.getX8RPiplineMoudle()],
+  [imageTargetTracking.getPiplineMoudle()],
   {
     initialized() {
       emit('initialized')
