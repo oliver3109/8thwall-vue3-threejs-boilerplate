@@ -12,38 +12,26 @@
 _This template allows you to easily develop 8th wall AR projects using Vue3, Three.js, and Typescript._
 
 > **NOTES**
-> - Still constantly improving
+> - Under development
 
-## Features
+## 🚀 Features
 
 - [x] Vite development environment
-- [x] Full TypeScript support
+- [x] Full [TypeScript](https://www.typescriptlang.org/) support
 - [x] State & Store Management (Pinia)
 - [x] Perfect combination of 8th Wall, Vue3, Three.js and Typescript
+- [x] Use [VueUse](https://vueuse.org/) wrapper for XR8 Instance
 
-## To Do
+## 🧾 To Do
 - [ ] Asset management
 - [ ] Debugging GUI and Stats
 - [ ] Including shader chunks
 - [ ] LYGIA Shader Library
 - [ ] Add type enhancement to XR8
-- [ ] Using Class to refactor XR8 development methods
 
-## Installation & Usage
+## 📦 Installation & Usage
 
 You can choose to clone the project or fork repository, or download the zip file directly. It is recommended to clone the repository so that you can receive the latest patches.
-
-To run a project, you need to have node version 16 or higher and use pnpm as your dependency management tool
-
-Create .env file in the project root and specify your AppKey like below.
-
-```bash
-# .env
-VITE_8THWALL_APP_KEY=xxxxxxxxxxxxxxxxxxx
-
-```
-
-## Build Setup
 
 ```bash
 # Clone this repository
@@ -60,18 +48,24 @@ $ pnpm dev
 $ pnpm build
 ```
 
-## Built-in
+To run a project, you need to have node version 16 or higher and use pnpm as your dependency management tool
 
-- vue
-- vue-router
-- pinia
-- typescript
-- three
+Create .env file in the project root and specify your AppKey like below.
 
-## Maintainers
+```bash
+# .env
+VITE_8THWALL_APP_KEY=xxxxxxxxxxxxxxxxxxx
+
+```
+
+## 🌸 Reference
+> This project is heavily inspired by the following awesome projects.
+> - [@mayacoda/simple-threejs-typescript-starter](https://github.com/mayacoda/simple-threejs-typescript-starter)
+
+## 👨‍🚀 Maintainers
 
 [@ChihYungChang](https://github.com/ChihYungChang)
 
-## License
+## 📄 License
 
 MIT © Chih-Yung Chang
