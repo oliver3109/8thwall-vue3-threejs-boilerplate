@@ -1,4 +1,4 @@
-import type { XRScene } from '@/interfaces/Three'
+import type { XRScene } from '@/XR8/interfaces/Three'
 import { EventEmitter } from '@/utils/EventEmitter'
 import * as THREE from 'three'
 

@@ -1,4 +1,4 @@
-export interface ConfigureParameters {
+export interface CanvasScreenshotConfigure {
   maxDimension?: number
   jpgCompression?: number
 }
@@ -9,7 +9,7 @@ export interface CanvasScreenshot {
    * @param config
    * @returns
    */
-  configure: (config: ConfigureParameters) => void
+  configure: (config: CanvasScreenshotConfigure) => void
 
   /**
    * Creates a camera pipeline module that, when installed,
@@ -20,8 +20,8 @@ export interface CanvasScreenshot {
   pipelineModule: () => void
 
   /**
-   * Returns a Promise that when resolved, 
-   * provides a buffer containing the JPEG compressed image. 
+   * Returns a Promise that when resolved,
+   * provides a buffer containing the JPEG compressed image.
    * When rejected, an error message is provided.
    * @returns
    */

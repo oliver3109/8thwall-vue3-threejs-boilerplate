@@ -1,4 +1,4 @@
-export interface ConfigureParameters {
+export interface XrControllerConfigure {
   /**
    * If true, turn off SLAM tracking for efficiency.
    * This needs to be done BEFORE XR8.run() is called.
