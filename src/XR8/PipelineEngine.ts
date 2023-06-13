@@ -2,8 +2,15 @@ import * as THREE from 'three'
 import type { Experience, ExperienceConstructor } from './Experience'
 import { Resources } from './Resources'
 import { Loader } from './common/Loader'
+import { EventEmitter } from './utilities/EventEmitter'
+import type {
+  ImageLoading,
+  ImageLoast,
+  ImageScanning,
+  ImageUpdated
+} from './interfaces/XrController'
 
-export class PipelineEngine {
+export class PipelineEngine extends EventEmitter {
   private readonly name: string
   public canvas!: HTMLCanvasElement
   public camera!: THREE.Camera
@@ -18,6 +25,7 @@ export class PipelineEngine {
   public currentTime: number = 0
 
   constructor(name: string, experienceConstructor: ExperienceConstructor) {
+    super()
     this.name = name
 
     if (!experienceConstructor) {
@@ -84,28 +92,36 @@ export class PipelineEngine {
       that.experience.update(that.deltaTime)
     }
 
-    const imagescanning = (event: { detail: any }) => {
+    const imageloading = (event: ImageLoading) => {
+      that.emit('reality.imageloading', event)
+    }
+
+    const imagescanning = (event: ImageScanning) => {
       if (that.experience && that.experience.constructGeometry) {
         that.experience.constructGeometry(event)
       }
+      that.emit('reality.imagescanning', event)
     }
 
-    const imagefound = (event: { detail: any }) => {
+    const imagefound = (event: ImageScanning) => {
       if (that.experience && that.experience.firstFindTarget) {
         that.experience.firstFindTarget(event)
       }
+      that.emit('reality.imagefound', event)
     }
 
-    const imageupdated = (event: { detail: any }) => {
+    const imageupdated = (event: ImageUpdated) => {
       if (that.experience && that.experience.showTarget) {
         that.experience.showTarget(event)
       }
+      that.emit('reality.imageupdated', event)
     }
 
-    const imagelost = (event: { detail: any }) => {
+    const imagelost = (event: ImageLoast) => {
       if (that.experience && that.experience.hideTarget) {
         that.experience.hideTarget(event)
       }
+      that.emit('reality.imagelost', event)
     }
 
     return {
@@ -118,6 +134,7 @@ export class PipelineEngine {
       // Listeners are called right after the processing stage that fired them. This guarantees that
       // updates can be applied at an appropriate synchronized point in the rendering cycle.
       listeners: [
+        { event: 'reality.imageloading', process: imageloading },
         { event: 'reality.imagescanning', process: imagescanning },
         { event: 'reality.imagefound', process: imagefound },
         { event: 'reality.imageupdated', process: imageupdated },

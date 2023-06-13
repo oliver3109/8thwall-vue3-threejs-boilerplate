@@ -3,7 +3,7 @@ import type { PipelineEngine } from '@/XR8/PipelineEngine'
 import type { Resource } from '@/XR8/Resources'
 import * as THREE from 'three'
 
-export class Demo implements Experience {
+export class ImageTrackingDemo implements Experience {
   resources: Resource[] = []
 
   constructor(private engine: PipelineEngine) {

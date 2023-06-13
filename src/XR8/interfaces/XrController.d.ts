@@ -56,3 +56,72 @@ export interface XrController {
    */
   pipelineModule: () => void
 }
+
+export interface ImageLoading {
+  detail: {
+    imageTargets: Array<{ name: string; type: string; metadata: any }>
+  }
+}
+
+export interface ImageScanning {
+  detail: {
+    imageTargets: Array<{
+      geometry: {
+        scaledWidth: number
+        scaledHeight: number
+        height: number
+        radiusTop: number
+        radiusBottom: number
+        arcStartRadians: number
+        arcLengthRadians: number
+      }
+      metadata: any
+      name: string
+      properties: {
+        moveable: boolean
+        physicalWidthInMeters: number
+        left: number
+        top: number
+        width: number
+      }
+      type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL'
+    }>
+  }
+  name: 'reality.imagescanning'
+}
+
+export interface ImageUpdated {
+  detail: {
+    name: string
+    type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL'
+    position: THREE.Vector3
+    rotation: THREE.Vector4
+    scale: number
+    scaledWidth: number
+    scaledHeight: number
+    height: number
+    radiusTop: number
+    radiusBottom: number
+    arcStartRadians: number
+    arcLengthRadians: number
+  }
+  name: 'reality.imageupdated'
+}
+
+export interface ImageLoast {
+  detail: {
+    name: string
+    type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL'
+    position: THREE.Vector3
+    rotation: THREE.Vector4
+    scale: number
+    scaledWidth: number
+    scaledHeight: number
+    height: number
+    radiusTop: number
+    radiusBottom: number
+    arcStartRadians: number
+    arcLengthRadians: number
+  }
+  name: 'reality.imagelost'
+}

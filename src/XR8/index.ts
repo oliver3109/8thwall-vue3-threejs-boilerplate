@@ -24,7 +24,7 @@ export interface XR8EventCallback {
 }
 
 /**
- * Start an XR8 instance
+ * initialization XR8 instance
  *
  * @param el
  * @param options
@@ -51,7 +51,7 @@ export function useXR8(
   }
 
   /**
-   *
+   * Starting initialization
    * @returns
    */
   const start = () => {
@@ -97,7 +97,7 @@ export function useXR8(
   }
 
   /**
-   *
+   * Stop XR8 instance
    */
   const stop = () => {
     console.log('✅', 'XR8 stopping')

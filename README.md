@@ -21,13 +21,14 @@ _This template allows you to easily develop 8th wall AR projects using Vue3, Thr
 - [x] State & Store Management (Pinia)
 - [x] Perfect combination of 8th Wall, Vue3, Three.js and Typescript
 - [x] Use [VueUse](https://vueuse.org/) wrapper for XR8 Instance
+- [x] Decouple the pipeline module of XR8 from the 3D rendering logic
+- [x] Asset management
 
 ## 🧾 To Do
-- [ ] Asset management
+- [ ] Add full type enhancement to XR8
 - [ ] Debugging GUI and Stats
 - [ ] Including shader chunks
 - [ ] LYGIA Shader Library
-- [ ] Add type enhancement to XR8
 
 ## 📦 Installation & Usage
 
