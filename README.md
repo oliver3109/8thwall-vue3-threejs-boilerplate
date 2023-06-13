@@ -23,6 +23,7 @@ _This template allows you to easily develop 8th wall AR projects using Vue3, Thr
 - [x] Use [VueUse](https://vueuse.org/) wrapper for XR8 Instance
 - [x] Decouple the pipeline module of XR8 from the 3D rendering logic
 - [x] Asset management
+- [x] Convenient debugging for developers using [vConsole](https://github.com/Tencent/vConsole) 
 
 ## 🧾 To Do
 - [ ] Add full type enhancement to XR8

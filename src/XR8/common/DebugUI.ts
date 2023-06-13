@@ -1,34 +1,24 @@
-import * as lilGui from 'lil-gui'
 import Stats from 'three/examples/jsm/libs/stats.module.js'
+import VConsole from 'vconsole'
 
 let instance: DebugUI | null = null
 
 export class DebugUI {
-  gui!: lilGui.GUI
   stats!: Stats
 
   constructor() {
     if (instance) {
       return this
     }
-
     instance = this
 
-    this.stats = new Stats()
-    document.body.appendChild(this.stats.dom)
+    if (import.meta.env.DEV) {
+      this.stats = new Stats()
+      document.body.appendChild(this.stats.dom)
+      this.stats.dom.style.display = 'block'
 
-    this.gui = new lilGui.GUI()
-
-    if (!window.location.search.includes('debug')) {
-      this.gui.hide()
-      this.stats.dom.style.display = 'none'
+      new VConsole()
     }
-
-    this.gui.show()
-    this.stats.dom.style.display = 'block'
-
-    // this.gui.hide()
-    // this.stats.dom.style.display = 'none'
   }
 
   update() {

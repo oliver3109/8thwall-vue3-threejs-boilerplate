@@ -9,6 +9,7 @@ import type {
   ImageScanning,
   ImageUpdated
 } from './interfaces/XrController'
+import { DebugUI } from './common/DebugUI'
 
 export class PipelineEngine extends EventEmitter {
   private readonly name: string
@@ -16,6 +17,7 @@ export class PipelineEngine extends EventEmitter {
   public camera!: THREE.Camera
   public scene!: THREE.Scene
   public renderer!: THREE.Renderer
+  public readonly debug: DebugUI
   public resources!: Resources
   private readonly experienceConstructor!: ExperienceConstructor
   private experience!: Experience
@@ -35,6 +37,7 @@ export class PipelineEngine extends EventEmitter {
     this.clock = new THREE.Clock()
     this.experienceConstructor = experienceConstructor
     this.loader = new Loader()
+    this.debug = new DebugUI()
   }
 
   private onStart({ canvas }: { canvas: HTMLCanvasElement }) {
@@ -90,6 +93,8 @@ export class PipelineEngine extends EventEmitter {
       that.deltaTime = elapsedTime - that.currentTime
       this.currentTime = elapsedTime
       that.experience.update(that.deltaTime)
+
+      this.debug.update()
     }
 
     const imageloading = (event: ImageLoading) => {
