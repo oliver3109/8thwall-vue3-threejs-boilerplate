@@ -5,7 +5,7 @@ import { Loader } from './common/Loader'
 import { EventEmitter } from './utilities/EventEmitter'
 import type {
   ImageLoading,
-  ImageLoast,
+  ImageLost,
   ImageScanning,
   ImageUpdated
 } from './interfaces/XrController'
@@ -122,7 +122,7 @@ export class PipelineEngine extends EventEmitter {
       that.emit('reality.imageupdated', event)
     }
 
-    const imagelost = (event: ImageLoast) => {
+    const imagelost = (event: ImageLost) => {
       if (that.experience && that.experience.hideTarget) {
         that.experience.hideTarget(event)
       }

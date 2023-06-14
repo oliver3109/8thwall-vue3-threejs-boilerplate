@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ImageLoast, ImageScanning, ImageUpdated } from '@/XR8/interfaces/XrController'
+import type { ImageLost, ImageScanning, ImageUpdated } from '@/XR8/interfaces/XrController'
 import XR8CameraFeedback from '@/components/XR8CameraFeedback.vue'
 
 const onInitialized = () => {
@@ -18,7 +18,7 @@ const onImageUpdated = (event: ImageUpdated) => {
   console.log('💡', 'imageupdated', event)
 }
 
-const onImageLost = (event: ImageLoast) => {
+const onImageLost = (event: ImageLost) => {
   console.log('💡', 'imagelost', event)
 }
 </script>

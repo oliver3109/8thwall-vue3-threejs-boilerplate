@@ -95,7 +95,7 @@ export interface ImageUpdated {
     name: string
     type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL'
     position: THREE.Vector3
-    rotation: THREE.Vector4
+    rotation: THREE.Quaternion
     scale: number
     scaledWidth: number
     scaledHeight: number
@@ -108,12 +108,12 @@ export interface ImageUpdated {
   name: 'reality.imageupdated'
 }
 
-export interface ImageLoast {
+export interface ImageLost {
   detail: {
     name: string
     type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL'
     position: THREE.Vector3
-    rotation: THREE.Vector4
+    rotation: THREE.Quaternion
     scale: number
     scaledWidth: number
     scaledHeight: number
