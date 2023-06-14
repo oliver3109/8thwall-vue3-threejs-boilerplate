@@ -27,9 +27,9 @@ _This template allows you to easily develop 8th wall AR projects using Vue3, Thr
 
 ## 🧾 To Do
 - [ ] Add full type enhancement to XR8
-- [ ] Debugging GUI and Stats
 - [ ] Including shader chunks
 - [ ] LYGIA Shader Library
+- [ ] Provide rich examples
 
 ## 📦 Installation & Usage
 

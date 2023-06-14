@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import { useXR8 } from '@/XR8'
 import { PipelineEngine } from '@/XR8/PipelineEngine'
-import { ImageTrackingDemo } from '../Demos/ImageTrackingDemo'
-import type { ImageLoast, ImageUpdated, ImageScanning } from '@/XR8/interfaces/XrController'
+import type { ImageLost, ImageUpdated, ImageScanning } from '@/XR8/interfaces/XrController'
+import { Demo } from '@/Demos/Demo2'
 
 const emit = defineEmits([
   'initialized',
@@ -15,7 +15,7 @@ const emit = defineEmits([
 
 const camerafeed = ref(null)
 
-const imageTargetTracking = new PipelineEngine('image-target-tracking', ImageTrackingDemo)
+const imageTargetTracking = new PipelineEngine('image-target-tracking', Demo)
 
 const { canvasWidth, canvasHeight } = useXR8(
   camerafeed,
@@ -45,7 +45,7 @@ imageTargetTracking.on('reality.imagefound', (event: ImageUpdated) => {
 imageTargetTracking.on('reality.imageupdated', (event: ImageUpdated) => {
   emit('imageupdated', event)
 })
-imageTargetTracking.on('reality.imagelost', (event: ImageLoast) => {
+imageTargetTracking.on('reality.imagelost', (event: ImageLost) => {
   emit('imagelost', event)
 })
 </script>
