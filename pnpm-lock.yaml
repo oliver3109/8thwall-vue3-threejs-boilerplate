@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@rushstack/eslint-patch': ^1.2.0
   '@tsconfig/node18': ^2.0.1
+  '@types/dat.gui': ^0.7.10
   '@types/jsdom': ^21.1.1
   '@types/node': ^18.16.8
   '@types/three': 0.152.1
@@ -13,6 +14,7 @@ specifiers:
   '@vue/test-utils': ^2.3.2
   '@vue/tsconfig': ^0.4.0
   '@vueuse/core': ^10.1.2
+  dat.gui: ^0.7.9
   eslint: ^8.39.0
   eslint-plugin-vue: ^9.11.0
   jsdom: ^22.0.0
@@ -31,6 +33,7 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 10.1.2_vue@3.3.4
+  dat.gui: 0.7.9
   pinia: 2.1.3_typescript@5.0.4+vue@3.3.4
   three: 0.152.2
   vue: 3.3.4
@@ -39,6 +42,7 @@ dependencies:
 devDependencies:
   '@rushstack/eslint-patch': 1.3.1
   '@tsconfig/node18': 2.0.1
+  '@types/dat.gui': 0.7.10
   '@types/jsdom': 21.1.1
   '@types/node': 18.16.18
   '@types/three': 0.152.1
@@ -705,6 +709,10 @@ packages:
 
   /@types/chai/4.3.5:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
+    dev: true
+
+  /@types/dat.gui/0.7.10:
+    resolution: {integrity: sha512-sLifoNrvs4lgJkAUZcTB28dbWy0AM05Yc0BzTqHheK0tRYRVsJHoFLocB5heDbb5amaFLEXna41GOM6IG06oqA==}
     dev: true
 
   /@types/jsdom/21.1.1:
@@ -1503,6 +1511,10 @@ packages:
 
   /csstype/3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+    dev: false
+
+  /dat.gui/0.7.9:
+    resolution: {integrity: sha512-sCNc1OHobc+Erc1HqiswYgHdVNpSJUlk/Hz8vzOCsER7rl+oF/4+v8GXFUyCgtXpoCX6+bnmg07DedLvBLwYKQ==}
     dev: false
 
   /data-urls/4.0.0:

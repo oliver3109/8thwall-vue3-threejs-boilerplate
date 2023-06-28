@@ -1,7 +1,7 @@
 import type { CanvasScreenshot } from './CanvasScreenshot'
 import type { XrController } from './XrController'
 import type { GlTextureRenderer } from './GlTextureRenderer'
-import type { Threejs } from './Three'
+import type { Threejs, XRScene } from './Three'
 import type { run } from './Run'
 import type { stop } from './Stop'
 
@@ -89,6 +89,9 @@ declare global {
     XR8: XR8
     LandingPage: any
     XRExtras: any
+    Threejs: {
+      xrScene: () => XRScene
+    }
   }
   const XR8: XR8
   const XRExtras: any

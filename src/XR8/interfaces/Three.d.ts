@@ -1,7 +1,11 @@
+import type { WebGLRenderer } from 'three'
+
 export interface XRScene {
   scene: THREE.Scene
   camera: THREE.Camera
-  renderer: THREE.Renderer
+  renderer: THREE.Renderer | WebGLRenderer
+  bloomComposer?: any
+  composer?: any
 }
 
 export interface Threejs {

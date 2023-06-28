@@ -97,36 +97,52 @@ export class PipelineEngine extends EventEmitter {
       this.debug.update()
     }
 
-    const imageloading = (event: ImageLoading) => {
+    const imageLoading = (event: ImageLoading) => {
       that.emit('reality.imageloading', event)
     }
 
-    const imagescanning = (event: ImageScanning) => {
+    const imageScanning = (event: ImageScanning) => {
       if (that.experience && that.experience.constructGeometry) {
         that.experience.constructGeometry(event)
       }
       that.emit('reality.imagescanning', event)
     }
 
-    const imagefound = (event: ImageScanning) => {
+    const imageFound = (event: ImageScanning) => {
       if (that.experience && that.experience.firstFindTarget) {
         that.experience.firstFindTarget(event)
       }
       that.emit('reality.imagefound', event)
     }
 
-    const imageupdated = (event: ImageUpdated) => {
+    const imageUpdated = (event: ImageUpdated) => {
       if (that.experience && that.experience.showTarget) {
         that.experience.showTarget(event)
       }
       that.emit('reality.imageupdated', event)
     }
 
-    const imagelost = (event: ImageLost) => {
+    const imageLost = (event: ImageLost) => {
       if (that.experience && that.experience.hideTarget) {
         that.experience.hideTarget(event)
       }
       that.emit('reality.imagelost', event)
+    }
+
+    const wayspotScanning = (event: any) => {
+      that.emit('reality.projectwayspotscanning', event)
+    }
+
+    const wayspotFound = (event: any) => {
+      that.emit('reality.projectwayspotfound', event)
+    }
+
+    const wayspotUpdated = (event: any) => {
+      that.emit('reality.projectwayspotupdated', event)
+    }
+
+    const wayspotLost = (event: any) => {
+      that.emit('reality.projectwayspotlost', event)
     }
 
     return {
@@ -139,11 +155,15 @@ export class PipelineEngine extends EventEmitter {
       // Listeners are called right after the processing stage that fired them. This guarantees that
       // updates can be applied at an appropriate synchronized point in the rendering cycle.
       listeners: [
-        { event: 'reality.imageloading', process: imageloading },
-        { event: 'reality.imagescanning', process: imagescanning },
-        { event: 'reality.imagefound', process: imagefound },
-        { event: 'reality.imageupdated', process: imageupdated },
-        { event: 'reality.imagelost', process: imagelost }
+        { event: 'reality.imageloading', process: imageLoading },
+        { event: 'reality.imagescanning', process: imageScanning },
+        { event: 'reality.imagefound', process: imageFound },
+        { event: 'reality.imageupdated', process: imageUpdated },
+        { event: 'reality.imagelost', process: imageLost },
+        { event: 'reality.projectwayspotscanning', process: wayspotScanning },
+        { event: 'reality.projectwayspotfound', process: wayspotFound },
+        { event: 'reality.projectwayspotupdated', process: wayspotUpdated },
+        { event: 'reality.projectwayspotlost', process: wayspotLost }
       ]
     }
   }

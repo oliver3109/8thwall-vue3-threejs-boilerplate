@@ -26,6 +26,7 @@ _This template allows you to easily develop 8th wall AR projects using Vue3, Thr
 - [x] Convenient debugging for developers using [vConsole](https://github.com/Tencent/vConsole) 
 
 ## 🧾 To Do
+- [ ] Support custome threejs pipelineModule & postprocessing
 - [ ] Add full type enhancement to XR8
 - [ ] Including shader chunks
 - [ ] LYGIA Shader Library
