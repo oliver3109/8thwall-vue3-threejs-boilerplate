@@ -14,6 +14,7 @@ import { ref, watch } from 'vue'
 
 export interface XR8Options {
   window?: Window & typeof globalThis
+  customThreejsPipelineModule?: () => any
   XrControllerConfigure?: XrControllerConfigure
   CanvasScreenshotConfigure?: CanvasScreenshotConfigure
 }
@@ -68,20 +69,23 @@ export function useXR8(
           XR8.CanvasScreenshot.configure(options.CanvasScreenshotConfigure)
         }
 
-        // Existing pipeline modules.
-        XR8.addCameraPipelineModules([
-          // Provides a camera pipeline module that draws the camera feed to a canvas as well as extra utilities for GL drawing operations.
-          XR8.GlTextureRenderer.pipelineModule(),
-          XR8.Threejs.pipelineModule(), // Creates a ThreeJS AR Scene.
-          XR8.XrController.pipelineModule(), // Enables SLAM tracking.
-          XRExtras.AlmostThere.pipelineModule(), // Detects unsupported browsers and gives hints.
+        // Provides a camera pipeline module that draws the camera feed to a canvas as well as extra utilities for GL drawing operations.
+        XR8.addCameraPipelineModule(XR8.GlTextureRenderer.pipelineModule())
 
-          // XRExtras.FullWindowCanvas.pipelineModule(), // Modifies the canvas to fill the window.
-          XRExtras.Loading.pipelineModule(), // Manages the loading screen on startup.
-          XRExtras.RuntimeError.pipelineModule(), // Shows an error image on runtime error.
+        // No provided customization threejs pipeline module
+        if (!options.customThreejsPipelineModule) {
+          XR8.addCameraPipelineModule(XR8.Threejs.pipelineModule()) // Creates a ThreeJS AR Scene.
+        } else {
+          XR8.addCameraPipelineModule(options.customThreejsPipelineModule()) // Creates a customization ThreeJS AR Scene.
+        }
 
-          ...pipelineModules
-        ])
+        XR8.addCameraPipelineModule(XR8.XrController.pipelineModule()) // Enables SLAM tracking.
+        XR8.addCameraPipelineModule(XRExtras.AlmostThere.pipelineModule()) // Detects unsupported browsers and gives hints.
+        XR8.addCameraPipelineModule(XRExtras.Loading.pipelineModule()) // Manages the loading screen on startup.
+        XR8.addCameraPipelineModule(XRExtras.RuntimeError.pipelineModule()) // Shows an error image on runtime error.
+
+        // Add custom pipeline
+        XR8.addCameraPipelineModules([...pipelineModules])
 
         if (options.CanvasScreenshotConfigure) {
           // Provides a camera pipeline module that can generate screenshots of the current scene.

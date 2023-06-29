@@ -4,6 +4,7 @@ import { useXR8 } from '@/XR8'
 import { PipelineEngine } from '@/XR8/PipelineEngine'
 import type { ImageLost, ImageUpdated, ImageScanning } from '@/XR8/interfaces/XrController'
 import { Demo } from '@/Demos/Demo2'
+import { threejsPipelineModule } from '@/XR8/threejsPipelineModule'
 
 const emit = defineEmits([
   'initialized',
@@ -26,7 +27,8 @@ const { canvasWidth, canvasHeight } = useXR8(
     CanvasScreenshotConfigure: {
       maxDimension: window.innerHeight,
       jpgCompression: 100
-    }
+    },
+    customThreejsPipelineModule: threejsPipelineModule
   },
   [imageTargetTracking.getPiplineMoudle()],
   {
