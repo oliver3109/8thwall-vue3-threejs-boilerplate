@@ -9,7 +9,8 @@ import {
   RGBFormat,
   WebGLRenderTarget,
   ReinhardToneMapping,
-  AmbientLight
+  AmbientLight,
+  FramebufferTexture
 } from 'three'
 
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
@@ -32,7 +33,7 @@ export const threejsPipelineModule = () => {
   let combinePass: ShaderPass
   let bloomPass: UnrealBloomPass
   const cameraTextureCopyPosition = new Vector2(0, 0)
-  let cameraTexture: DataTexture
+  let cameraTexture: FramebufferTexture
   let sceneTarget: WebGLRenderTarget
   let copyPass: TexturePass
   let width
@@ -177,12 +178,15 @@ export const threejsPipelineModule = () => {
       if (!isSetup) {
         return
       }
-      cameraTexture = new DataTexture(
-        new Uint8Array(canvasWidth * canvasHeight * 3),
-        canvasWidth,
-        canvasHeight,
-        RGBFormat
-      )
+      // Before three.js r136 used 'DataTexture'
+      /** cameraTexture = new DataTexture(
+       new Uint8Array(canvasWidth * canvasHeight * 3),
+       canvasWidth,
+       canvasHeight,
+       RGBFormat
+       )
+       */
+      cameraTexture = new FramebufferTexture(canvasWidth, canvasHeight, RGBFormat)
       const { renderer } = scene3
       renderer!.setSize(canvasWidth, canvasHeight)
       const pixelRatio = MathUtils.clamp(window.devicePixelRatio, 1, 2)
