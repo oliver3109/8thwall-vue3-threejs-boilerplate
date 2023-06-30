@@ -6,17 +6,19 @@ import {
   Vector2,
   MathUtils,
   DataTexture,
-  Color,
+  RGBFormat,
   WebGLRenderTarget,
   ReinhardToneMapping,
-  AmbientLight,
-  RGBAFormat
+  AmbientLight
 } from 'three'
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
-import { TexturePass } from 'three/addons/postprocessing/TexturePass.js'
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
+
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
+import { TexturePass } from 'three/examples/jsm/postprocessing/TexturePass.js'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+
+import { UnrealBloomPass } from './AlphaUnrealBloomPass.js'
 import type { XRScene } from './interfaces/Three.js'
+
 // unreal bloom configuration
 const params = {
   exposure: 1,
@@ -25,7 +27,7 @@ const params = {
   radius: 0
 }
 export const threejsPipelineModule = () => {
-  let customXrScene: XRScene
+  let scene3: XRScene
   let isSetup = false
   let combinePass: ShaderPass
   let bloomPass: UnrealBloomPass
@@ -35,7 +37,7 @@ export const threejsPipelineModule = () => {
   let copyPass: TexturePass
   let width
   let height
-
+  // add shaders to the document
   const combineShaderFrag = `
   uniform sampler2D cameraTexture;
   uniform sampler2D tDiffuse; // Scene contents 
@@ -59,7 +61,7 @@ export const threejsPipelineModule = () => {
     // gl_FragColor += bloomColor;
     // gl_FragColor = vec4(length(cameraColor.rgb), length(bloomColor.rgb), length(sceneColor.rgb), 1.); // Shows camera in red and scene in blue
   }
-  `
+`
   const combineShaderVert = `
   varying vec2 vUv;
 	void main() {
@@ -76,8 +78,9 @@ export const threejsPipelineModule = () => {
     fragmentShader: combineShaderFrag,
     vertexShader: combineShaderVert
   }
-  const xrScene = () => customXrScene
+  const xrScene = () => scene3
   const trySetup = ({ canvas, canvasWidth, canvasHeight, GLctx }: any) => {
+    console.log({ canvas, canvasWidth, canvasHeight, GLctx })
     if (isSetup) {
       return
     }
@@ -101,7 +104,7 @@ export const threejsPipelineModule = () => {
     renderer.debug.checkShaderErrors = false // speeds up loading new materials
     renderer.autoClear = false
     renderer.autoClearDepth = false
-    renderer.setClearColor(0xffffff, 0)
+    // renderer.setClearColor(0xffffff, 0)
     renderer.toneMapping = ReinhardToneMapping
     renderer.toneMappingExposure = params.exposure
     // renderer.setSize(canvasWidth, canvasHeight)
@@ -116,7 +119,7 @@ export const threejsPipelineModule = () => {
     bloomComposer.addPass(copyPass)
     // Bloom Pass
     bloomPass = new UnrealBloomPass(new Vector2(canvasWidth, canvasHeight), 1.5, 0.4, 0.85)
-    bloomPass.clearColor = new Color(0xffffff)
+    // bloomPass.clearColor = new Color(0xffffff)
     bloomPass.threshold = params.threshold
     bloomPass.strength = params.strength
     bloomPass.radius = params.radius
@@ -129,12 +132,10 @@ export const threejsPipelineModule = () => {
     combinePass.clear = false
     combinePass.renderToScreen = true
     composer.addPass(combinePass)
-    scene.add(new AmbientLight(0x404040, 3))
-    customXrScene = { scene, camera, renderer, bloomComposer, composer }
-    // window.customXrScene = customXrScene
+    scene3 = { scene, camera, renderer, bloomComposer, composer }
     window.XR8.Threejs.xrScene = xrScene
     const gui = new dat.GUI({ width: 250 })
-    gui.add(params, 'exposure', 0.1, 2).onChange((value: number) => {
+    gui.add(params, 'exposure', 0.1, 2).onChange((value) => {
       renderer.toneMappingExposure = value ** 4
     })
     gui.add(bloomPass, 'threshold', 0, 1)
@@ -154,22 +155,22 @@ export const threejsPipelineModule = () => {
         return
       }
       const { rotation, position, intrinsics } = realitySource
-      const { camera } = customXrScene
+      const { camera } = scene3
       for (let i = 0; i < 16; i++) {
-        camera.projectionMatrix.elements[i] = intrinsics[i]
+        camera!.projectionMatrix.elements[i] = intrinsics[i]
       }
       // Fix for broken raycasting in r103 and higher. Related to:
       //   https://github.com/mrdoob/three.js/pull/15996
       // Note: camera.projectionMatrixInverse wasn't introduced until r96 so check before setting
       // the inverse
-      if (camera.projectionMatrixInverse) {
-        camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert()
+      if (camera!.projectionMatrixInverse) {
+        camera!.projectionMatrixInverse.copy(camera!.projectionMatrix).invert()
       }
       if (rotation) {
-        camera.setRotationFromQuaternion(rotation)
+        camera!.setRotationFromQuaternion(rotation)
       }
       if (position) {
-        camera.position.set(position.x, position.y, position.z)
+        camera!.position.set(position.x, position.y, position.z)
       }
     },
     onCanvasSizeChange: ({ canvasWidth, canvasHeight, videoWidth, videoHeight }: any) => {
@@ -180,29 +181,27 @@ export const threejsPipelineModule = () => {
         new Uint8Array(canvasWidth * canvasHeight * 3),
         canvasWidth,
         canvasHeight,
-        RGBAFormat
+        RGBFormat
       )
-      const { renderer } = customXrScene
-      renderer.setSize(canvasWidth, canvasHeight)
+      const { renderer } = scene3
+      renderer!.setSize(canvasWidth, canvasHeight)
       const pixelRatio = MathUtils.clamp(window.devicePixelRatio, 1, 2)
-      ;(renderer as WebGLRenderer).pixelRatio = pixelRatio
+      renderer!.pixelRatio = pixelRatio
       // Update render pass sizes
-      customXrScene.bloomComposer.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
-      customXrScene.bloomComposer.passes.forEach(
+      scene3.bloomComposer.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
+      scene3.bloomComposer.passes.forEach(
         (pass: { setSize: (arg0: number, arg1: number) => void }) => {
           if (pass.setSize) {
             pass.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
           }
         }
       )
-      customXrScene.composer.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
-      customXrScene.composer.passes.forEach(
-        (pass: { setSize: (arg0: number, arg1: number) => void }) => {
-          if (pass.setSize) {
-            pass.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
-          }
+      scene3.composer.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
+      scene3.composer.passes.forEach((pass: { setSize: (arg0: number, arg1: number) => void }) => {
+        if (pass.setSize) {
+          pass.setSize(canvasWidth * pixelRatio, canvasHeight * pixelRatio)
         }
-      )
+      })
       if (bloomPass && combinePass && sceneTarget && copyPass) {
         combinePass.uniforms.cameraTexture = { value: cameraTexture }
         combinePass.uniforms.bloomTexture = {
@@ -214,20 +213,17 @@ export const threejsPipelineModule = () => {
     },
     onRender: () => {
       if (cameraTexture) {
-        ;(customXrScene.renderer as WebGLRenderer).copyFramebufferToTexture(
-          cameraTextureCopyPosition,
-          cameraTexture
-        )
+        scene3.renderer!.copyFramebufferToTexture(cameraTextureCopyPosition, cameraTexture)
       }
       if (sceneTarget) {
-        ;(customXrScene.renderer as WebGLRenderer).setRenderTarget(sceneTarget)
+        scene3.renderer!.setRenderTarget(sceneTarget)
       }
-      ;(customXrScene.renderer as WebGLRenderer).clear()
-      ;(customXrScene.renderer as WebGLRenderer).clearDepth()
-      ;(customXrScene.renderer as WebGLRenderer).render(customXrScene.scene, customXrScene.camera)
-      ;(customXrScene.renderer as WebGLRenderer).setRenderTarget(null)
-      customXrScene.bloomComposer.render()
-      customXrScene.composer.render()
+      scene3.renderer!.clear()
+      scene3.renderer!.clearDepth()
+      scene3.renderer!.render(scene3.scene!, scene3.camera!)
+      scene3.renderer!.setRenderTarget(null)
+      scene3.bloomComposer.render()
+      scene3.composer.render()
     },
     // Get a handle to the xr scene, camera, renderer, and composers
     xrScene

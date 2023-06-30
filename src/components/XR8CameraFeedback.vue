@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useXR8 } from '@/XR8'
 import { PipelineEngine } from '@/XR8/PipelineEngine'
 import type { ImageLost, ImageUpdated, ImageScanning } from '@/XR8/interfaces/XrController'
-import { Demo } from '@/Demos/Demo2'
+import { Demo } from '@/Demos/Demo3'
 import { threejsPipelineModule } from '@/XR8/threejsPipelineModule'
 
 const emit = defineEmits([
@@ -53,5 +53,5 @@ imageTargetTracking.on('reality.imagelost', (event: ImageLost) => {
 </script>
 
 <template>
-  <canvas ref="camerafeed" type="webgl" :width="canvasWidth" :height="canvasHeight"></canvas>
+  <canvas ref="camerafeed" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>

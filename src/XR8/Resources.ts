@@ -2,19 +2,23 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { EventEmitter } from './utilities/EventEmitter'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+
+// three@152 TTFLoader -> FontLoader
+// import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+
+import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js'
 
 export type Resource =
   | {
-      name: string;
-      type: Exclude<AssetType, "cubeTexture">;
-      path: string;
+      name: string
+      type: Exclude<AssetType, 'cubeTexture'>
+      path: string
     }
   | {
-      name: string;
-      type: "cubeTexture";
-      path: string[];
-    };
+      name: string
+      type: 'cubeTexture'
+      path: string[]
+    }
 
 type AssetType = 'gltf' | 'texture' | 'cubeTexture' | 'font'
 
@@ -22,7 +26,7 @@ type Loaders = {
   gltf: GLTFLoader
   texture: THREE.TextureLoader
   cubeTexture: THREE.CubeTextureLoader
-  font: FontLoader
+  font: TTFLoader
 }
 
 const dracoLoader = new DRACOLoader()
@@ -56,7 +60,7 @@ export class Resources extends EventEmitter {
       gltf: new GLTFLoader(this.loadingManager),
       texture: new THREE.TextureLoader(this.loadingManager),
       cubeTexture: new THREE.CubeTextureLoader(this.loadingManager),
-      font: new FontLoader(this.loadingManager)
+      font: new TTFLoader(this.loadingManager)
     }
   }
 
