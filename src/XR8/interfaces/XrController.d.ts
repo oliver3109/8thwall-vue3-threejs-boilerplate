@@ -17,6 +17,13 @@ export interface XrControllerConfigure {
    */
   enableWorldPoints?: boolean
 
+  /**
+   * List of names of the image target to detect.
+   * Can be modified at runtime.
+   * Note: All currently active image targets will be replaced with the ones specified in this list.
+   */
+  imageTargets?: string[]
+
   // TODO
 }
 
