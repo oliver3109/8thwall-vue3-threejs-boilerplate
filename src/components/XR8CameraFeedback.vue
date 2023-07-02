@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useXR8 } from '@/XR8'
 import { PipelineEngine } from '@/XR8/PipelineEngine'
 import type { ImageLost, ImageUpdated, ImageScanning } from '@/XR8/interfaces/XrController'
-import { Demo } from '@/Demos/Demo3'
+import { Demo } from '@/Demos/Demo2'
 import { threejsPipelineModule } from '@/XR8/threejsPipelineModule'
 
 const emit = defineEmits([
@@ -22,7 +22,8 @@ const { canvasWidth, canvasHeight } = useXR8(
   camerafeed,
   {
     XrControllerConfigure: {
-      disableWorldTracking: false
+      disableWorldTracking: false,
+      imageTargets: ['side-3', 'side-2', 'side-1', 'neiceng-flat-4', 'neiceng-flat-3']
     },
     CanvasScreenshotConfigure: {
       maxDimension: window.innerHeight,

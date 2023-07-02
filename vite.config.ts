@@ -18,6 +18,7 @@ export default defineConfig({
     host: '0.0.0.0'
   },
   assetsInclude: [
+    '**/*.json',
     '**/*.glb',
     '**/*.gltf',
     '**/*.fbx',

@@ -9,7 +9,7 @@ import {
 } from 'three/examples/jsm/geometries/TextGeometry'
 import type { ImageLost, ImageUpdated } from '@/XR8/interfaces/XrController'
 
-const TEXT = ['君不见黄河之水天上来']
+const TEXT = ['ABCDEFG']
 
 /**
  * create geometric text
@@ -33,7 +33,7 @@ export class Demo implements Experience {
   resources: Resource[] = [
     {
       name: 'textFont',
-      path: './fonts/FZBangShuKaiS-R-GB_Regular.json',
+      path: './fonts/helvetiker_regular.json',
       type: 'font'
     }
   ]
@@ -73,7 +73,7 @@ export class Demo implements Experience {
     for (const text of TEXT) {
       const textGeometry = createTextGeometry(text, {
         font,
-        size: 0.05,
+        size: 0.1,
         height: 0.01 /* Text thickness */,
         curveSegments: 12 /* Number of curve points (5 reduces optimization performance) */,
         bevelEnabled: false /* Whether to turn on bevel */,
@@ -115,7 +115,7 @@ export class Demo implements Experience {
   private initCurvesPoint(count: number, centerVec: THREE.Vector3) {
     const point = []
     for (let i = 0; i < count; i++) {
-      const r = 0.2
+      const r = 0.5
       point.push([
         {
           x: -r + centerVec.x,
@@ -148,9 +148,9 @@ export class Demo implements Experience {
         const { x, y, z } = handlePos
         return new THREE.Vector3(x, y, z)
       })
-      const curve = new THREE.CatmullRomCurve3(curveVertices)
-      curve.curveType = 'centripetal'
-      curve.closed = true
+      const curve = new THREE.CatmullRomCurve3(curveVertices, true, 'centripetal')
+      // curve.curveType = 'centripetal'
+      // curve.closed = true
       const points = curve.getPoints(50)
       const line = new THREE.LineLoop(
         new THREE.BufferGeometry().setFromPoints(points),
