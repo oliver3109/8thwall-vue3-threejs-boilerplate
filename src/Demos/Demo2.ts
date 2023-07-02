@@ -2,11 +2,11 @@ import type { Experience } from '@/XR8/Experience'
 import type { PipelineEngine } from '@/XR8/PipelineEngine'
 import type { Resource } from '@/XR8/Resources'
 import * as THREE from 'three'
-import { InstancedFlow } from 'three/examples/jsm/modifiers/CurveModifier.js'
+import { InstancedFlow } from 'three/examples/jsm/modifiers/CurveModifier'
 import {
   TextGeometry,
   type TextGeometryParameters
-} from 'three/examples/jsm/geometries/TextGeometry.js'
+} from 'three/examples/jsm/geometries/TextGeometry'
 import type { ImageLost, ImageUpdated } from '@/XR8/interfaces/XrController'
 
 const TEXT = ['君不见黄河之水天上来']

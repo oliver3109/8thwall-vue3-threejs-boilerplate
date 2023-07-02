@@ -1,12 +1,12 @@
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { EventEmitter } from './utilities/EventEmitter'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 // three@152 TTFLoader -> FontLoader
 // import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
-import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js'
+import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader'
 
 export type Resource =
   | {

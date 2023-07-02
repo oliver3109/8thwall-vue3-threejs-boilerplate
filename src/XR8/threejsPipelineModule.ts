@@ -6,16 +6,18 @@ import {
   Vector2,
   MathUtils,
   DataTexture,
-  RGBFormat,
+  RGBAFormat,
   WebGLRenderTarget,
   ReinhardToneMapping,
   AmbientLight,
   FramebufferTexture
 } from 'three'
 
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
-import { TexturePass } from 'three/examples/jsm/postprocessing/TexturePass.js'
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import * as THREE from 'three'
+
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
+import { TexturePass } from 'three/examples/jsm/postprocessing/TexturePass'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 
 import { UnrealBloomPass } from './AlphaUnrealBloomPass.js'
 import type { XRScene } from './interfaces/Three.js'
@@ -186,7 +188,7 @@ export const threejsPipelineModule = () => {
        RGBFormat
        )
        */
-      cameraTexture = new FramebufferTexture(canvasWidth, canvasHeight, RGBFormat)
+      cameraTexture = new FramebufferTexture(canvasWidth, canvasHeight, RGBAFormat)
       const { renderer } = scene3
       renderer!.setSize(canvasWidth, canvasHeight)
       const pixelRatio = MathUtils.clamp(window.devicePixelRatio, 1, 2)

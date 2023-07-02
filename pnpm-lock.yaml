@@ -6,7 +6,7 @@ specifiers:
   '@types/dat.gui': ^0.7.10
   '@types/jsdom': ^21.1.1
   '@types/node': ^18.16.8
-  '@types/three': 0.136.0
+  '@types/three': 0.137.0
   '@vitejs/plugin-vue': ^4.2.3
   '@vitejs/plugin-vue-jsx': ^3.0.1
   '@vue/eslint-config-prettier': ^7.1.0
@@ -22,7 +22,7 @@ specifiers:
   pinia: ^2.0.36
   prettier: ^2.8.8
   sass: ^1.63.2
-  three: 0.136.0
+  three: 0.137.0
   typescript: ~5.0.4
   vconsole: ^3.15.1
   vite: ^4.3.5
@@ -35,7 +35,7 @@ dependencies:
   '@vueuse/core': 10.2.1_vue@3.3.4
   dat.gui: 0.7.9
   pinia: 2.1.4_typescript@5.0.4+vue@3.3.4
-  three: 0.136.0
+  three: 0.137.0
   vue: 3.3.4
   vue-router: 4.2.2_vue@3.3.4
 
@@ -45,7 +45,7 @@ devDependencies:
   '@types/dat.gui': 0.7.10
   '@types/jsdom': 21.1.1
   '@types/node': 18.16.18
-  '@types/three': 0.136.0
+  '@types/three': 0.137.0
   '@vitejs/plugin-vue': 4.2.3_vite@4.3.9+vue@3.3.4
   '@vitejs/plugin-vue-jsx': 3.0.1_vite@4.3.9+vue@3.3.4
   '@vue/eslint-config-prettier': 7.1.0_eslint@8.43.0+prettier@2.8.8
@@ -736,8 +736,8 @@ packages:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
     dev: true
 
-  /@types/three/0.136.0:
-    resolution: {integrity: sha512-yNBe5U3B+eSZU+pmiDxeq3hDyF+ftYghFkY3y0ayZrF8SjoUMVIRXqEfJX39wTSDsiY4/+tkmKgNxhhIKbnxeQ==}
+  /@types/three/0.137.0:
+    resolution: {integrity: sha512-Xc5EAlfYmgrCLI/VlSVqiRJAtzhWF0Rw2jSq48nqJy+Hcb5sfDOXyfZn1+RNcHyi9l8CeCAXCZygO8IyeOJVEA==}
     dev: true
 
   /@types/tough-cookie/4.0.2:
@@ -3224,8 +3224,8 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /three/0.136.0:
-    resolution: {integrity: sha512-+fEMX7nYLz2ZesVP/dyifli5Jf8gR3XPAnFJveQ80aMhibFduzrADnjMbARXh8+W9qLK7rshJCjAIL/6cDxC+A==}
+  /three/0.137.0:
+    resolution: {integrity: sha512-rzSDhia6cU35UCy6y+zEEws6vSgytfHqFMSaBvUcySgzwvDO6vETyswtSNi/+aVqJw8WLMwyT1mlQQ1T/dxxOA==}
     dev: false
 
   /time-zone/1.0.0:

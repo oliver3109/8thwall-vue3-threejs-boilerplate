@@ -19,8 +19,8 @@ import { Pass } from 'three/examples/jsm/postprocessing/Pass'
 //@ts-ignore
 import { FullScreenQuad } from 'three/examples/jsm/postprocessing/Pass'
 
-import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js'
-import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader.js'
+import { CopyShader } from 'three/examples/jsm/shaders/CopyShader'
+import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader'
 
 /**
  * Thanks to https://github.com/mrdoob/three.js/issues/14104#issuecomment-429664412 for this fragmentShaderfix
@@ -304,7 +304,7 @@ class TransparentBackgroundFixedUnrealBloomPass extends Pass {
       renderer.setRenderTarget(null)
       this.fsQuad.render(renderer)
     } else {
-      renderer.setRenderTarget(readBuffer)
+      renderer.setRenderTarget(inputRenderTarget)
       this.fsQuad.render(renderer)
     }
 
